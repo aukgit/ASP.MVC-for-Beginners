@@ -94,9 +94,24 @@ namespace SimpleMVCApp.Controllers {
                 throw new Exception("We can't remove data.");
 
             }
-            
+
 
 
         }
+
+        public ActionResult Search(string query) {
+            var splitTexts = query.Split(' ');
+            var people = db.People
+                .Where(person =>
+                    splitTexts
+                        .Any(querySingle => //like '*query*'
+                            person.FirstName.Contains(querySingle)) ||
+                    splitTexts
+                        .Any(querySingle =>
+                            person.LastName.Contains(querySingle))
+                ); //entity 
+            return View("Index",people);
+        }
+
     }
 }

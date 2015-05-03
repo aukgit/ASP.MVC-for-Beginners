@@ -5,7 +5,9 @@
 }
 
 <h2>People Index</h2>
-
+@using (Html.BeginForm("Search","People")) {
+    <input class="form-control pull-right" name="query" type="text" placeholder="Search ...." />
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -23,23 +25,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.PersonID}) |
-            @Html.ActionLink("Details", "Details", new {id = item.PersonID}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.PersonID})
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PersonID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PersonID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PersonID })
+            </td>
+        </tr>
+    }
 
 </table>
